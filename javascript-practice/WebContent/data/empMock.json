@@ -1,0 +1,9 @@
+{
+	"RST_DATA" : [
+		{"empno" : "A001", "empnm" : "홍길동", "deptcd" : "01", "tel" : "010-1111-1232", "memo" : "test01"},
+		{"empno" : "A002", "empnm" : "임꺽정", "deptcd" : "02", "tel" : "010-5341-2112", "memo" : "test02"},
+		{"empno" : "A003", "empnm" : "손예진", "deptcd" : "03", "tel" : "010-1471-2432", "memo" : "test03"},
+		{"empno" : "A004", "empnm" : "이병헌", "deptcd" : "04", "tel" : "010-1561-2922", "memo" : "test04"},
+		{"empno" : "A005", "empnm" : "소지섭", "deptcd" : "05", "tel" : "010-1177-2722", "memo" : "test05"}
+	]
+}

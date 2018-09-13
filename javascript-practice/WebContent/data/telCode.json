@@ -1,0 +1,8 @@
+{
+	"TEL_LIST" : [
+		{ "code" : "01", "desc" : "SKT"},
+		{ "code" : "02", "desc" : "LG_U+"},
+		{ "code" : "03", "desc" : "KT"}
+	]
+}
+
