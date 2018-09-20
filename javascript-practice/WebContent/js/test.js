@@ -196,3 +196,17 @@ function getDesc(inputCode) {
 	
 	return desc;
 }
+
+
+/*
+$.each(oCON, function(i, item) {
+	$('#conPlan').append('<tr><td>' + item.PASSX + '</td>' 
+	+ '<td>' + item.FIRSTIME + '</td>' 
+	+ '<td>' + item.DEVNO + '</td>'
+	+ '<td>' + item.PASSCON + '</td>'
+	+ '<td>' + item.THISYEAR + '</td></tr>');
+});
+*/
+
+
+
