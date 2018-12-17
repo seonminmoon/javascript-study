@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+* { /* [*]는 브라우저에 과부하가 걸릴 수 있기 때문에 과한 사용 금지 */
+	margin: 10px;
+	padding: 0px;
+	border: 1px solid #bbb;
+}
+
+a { /* 다른 태그에 영향을 줄 수있기 때문에 지양한다. */
+	text-decoration : none;
+}
+
+#table_01 {
+	/* id가 table_01인 경우 */
+	border-collapse: collapse;
+	border-spacing:0px;
+	}
+#table_01 * {
+	/* id가 table_01인 요소의 자식 요소 */
+	padding:10px;
+	border-bottom: 1px solid blue;
+}
+#table_01 thead > tr { /* 직계 자식만 선택 */
+	background-color:#4374D9;
+	color : white;
+}
+
+.chk[name="aa"] {
+/* 클래스 이름이 chk 이고, 속성 name을 가졌는데 name의 이름이 aa인 요소 */
+	color : red;	
+}
+
+#div_03 p a[href*="http"]:hover {
+/* 와일드카드 */
+/* id가 div_03인 요소 밑에, p 태그 밑에, a 태그중에 href속성을 가지고 있고, "http"를 포함하였으며, 마우스가 올라가있는 요소 */
+	color : white;
+	background-color : black;
+}
+
+div[id^="hih"] { /* id 속성값이 hih로 시작하는 div  */
+  color: red;
+}
+
+div[id$="h"] { /* id 속성값이 h로 끝나는 div */
+  color : blue;
+}
+
+td[class="Td1"], #div_03 .pText a {
+/* 가지고있는 class 속성의 이름이 "Td1" 인 td태그, 
+   id가 div_03인 요소 밑에 class가 pText인 요소 밑에 있는 모든 a태그  */
+	color : blue;
+}
+
+th:not(.Td1) {
+/* 클래스 이름이 Td1이 아닌 th 요소 */
+	color : moccasin;
+}
+
+#table_01 tbody tr:nth-child(2n), #table_01 tbody td:nth-child(2n) {
+/* id가 table_01 밑에, tbody 밑에, tr 태그 중에 2배수 위치에 있는 tr
+   */
+	background-color : #D9E5FF;	
+}
+
+#table_01 thead tr th:nth-child(2n-1) { /* th 자식들 중에 홀수만 */
+	cursor:wait;
+}
+#table_01 thead tr th:nth-last-child(2) { /* th 자식들 중에 마지막에서부터 두번째 자식 */
+	cursor:pointer;
+}
+
+.pText:first-letter, .pText:first-line { /* 블록 요소에만 적용됨 */
+    font-size: 2em;
+    font-family: cursive;
+    padding-right: 2px;
+    font-weight: bold;
+}
+
+.ulClass {
+	float:center;
+	background: #292929;
+	color: white;
+	list-style: none;
+	padding-left: 0;
+	display: inline-block;
+}
+ 
+.ulClass li {
+	width: 200px;
+	display: inline-block;
+	padding: 10px;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	border-top: 1px solid #3c3c3c;
+	border-left: 1px solid white;
+}
+
+#lastDiv .ulClass:first-child li:last-child {
+	background-color : indigo;
+}
+
+.ulClass [target], .ulClass [data-name], td[aaa] {
+	background-color : red;
+}
+
+.fSize {
+	font-size : 2em;
+}
+
+tr td span span:before {
+  content: '[ ';
+}
+
+tr td span span :after {
+  content: ' ]';
+}
+
+</style>
+</head>
+<body>
+
+<div id="div_01">
+	<div id="div_02">
+		<div id="div_03">
+			<p class="pText">영화 <a href="https://movie.naver.com/movie/bi/mi/basic.nhn?code=172425">서치</a>는 부재중 전화 3통만을 남기고 사라진 딸, 그녀의 SNS에 남겨진<br> 
+			흔적을 통해 행방을 찾기 시작한 아빠가 발견한 뜻밖의 진실을 그린 추적 스릴러.<br>
+			웰메이드 추적 스릴러 <a href="https://movie.naver.com/movie/bi/mi/basic.nhn?code=172425">서치</a>는 전국 극장에서 절찬 상영 중이다.</p>
+			<p class="pText">선택자(Selector)는 css에서 가장 중요한 개념이라고 할 수 있습니다.</p>
+		</div>
+		<span id="span_01">
+			<input type="button" id="btn" value="버튼"/>
+			<input type="checkbox" class="chk" name="aa" value="체크박스AA"/>
+			<input type="checkbox" class="chk" name="bb" value="체크박스BB"/>
+			<input type="checkbox" class="chk" name="aa" value="체크박스AA"/>
+			<input type="checkbox" class="chk" name="bb" value="체크박스BB"/>
+		</span>
+		<span id="span_02">
+			<input type="radio" checked />
+		</span>
+		<table id="table_01">
+			<thead>
+				<tr>
+					<th class="Td1 fSize">제목1</th> 
+					<!-- id는 하나밖에 넣을 수 없지만, class는 두 가지 이상 넣을 수 있다 -->
+					<th>제목2</th>
+					<th>제목3</th>
+					<th>제목4</th>
+					<th>제목4</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="Td1" aaa="aaa">내용1</td>
+					<td class="Td2">내용2</td>
+					<td class="Td1">내용3</td>
+					<td class="Td2">내용4</td>
+					<td class="Td2"><span><span>span</span></span></td>
+				</tr>
+				<tr>
+					<td>내용1</td>
+					<td class="Td1">내용2</td>
+					<td class="Td1">내용3</td>
+					<td>내용4</td>
+					<td>내용4</td>
+				</tr>
+				<tr>
+					<td>내용1</td>
+					<td>내용2</td>
+					<td class="Td1">내용2</td>
+					<td>내용3</td>
+					<td>내용4</td>
+				</tr>
+				<tr>
+					<td>내용1</td>
+					<td>내용2</td>
+					<td>내용3</td>
+					<td>내용4</td>
+					<td class="Td1">내용4</td>
+				</tr>
+				<tr>
+					<td class="Td1">내용1</td>
+					<td>내용2</td>
+					<td>내용3</td>
+					<td>내용4</td>
+					<td>내용4</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="lastDiv">
+		<ul class="ulClass">
+			<li class="liClass">a</li>
+			<li class="liClass" data-name="_top">b</li>
+			<li>c</li>
+		</ul>
+		<ul class="ulClass">
+			<li>a</li>
+			<li target="_top">b</li>
+			<li>c</li>
+		</ul>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

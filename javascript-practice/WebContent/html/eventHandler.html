@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ready demo</title>
+<style>
+.twoClick, .oneClick {
+	width: auto;
+	hieght: 200px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+a:hover {
+	background-color: green;
+}
+
+a:active { /*클릭 할 때*/
+	color: red;
+}
+
+a:visited { /*클릭 후*/
+	color: black;
+}
+
+#movePoint {
+	width: 220px;
+	height: 170px;
+	margin: 10px 50px 10px 10px;
+	background: yellow;
+	border: 2px groove;
+	float: center;
+}
+
+.changeBtn, .toggleBtn {
+	width: 200px;
+}
+
+#btnDsc {
+	display: none;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+</head>
+<body>
+	<!-- html start  -->
+	<input type="button" class='changeBtn' value="mouse" />
+	<div id="btnDsc">
+		<span id="changeBtnDsc"></span>
+	</div>
+
+	<a href="https://www.naver.com/">naver</a>
+	<p class="twoClick">dblclick() 더블클릭하면 사라짐</p>
+	<p class="oneClick">click() 한번 클릭하면 사라짐</p>
+	<p class="twoClick">dblclick() 더블클릭하면 사라짐</p>
+
+
+	<input type="button" class='toggleBtn' value="toggle" />
+	<div id="mouseMove">
+		<span class="point">마우스를 움직여보세요.</span> <span class="point">&nbsp;</span>
+		<div id="movePoint"></div>
+	</div>
+
+	<input id="textEnter" type="text" placeholder="작성  후 엔터치세요" />
+
+	<!----- // script start ------>
+	<script>
+    $('#textEnter').keypress(function(e){
+	    if(e.keyCode == 13) {
+		    alert("text 내용 : " + $(this).val());
+ 	    }
+    });
+	// ready() 작성법 또다른 예 ==>	$(function() { 내용  });
+	$( document ).ready(function(e){
+		$("#mouseMove").hide();
+	    $( ".changeBtn" ).on( "click", function() {
+	        $( "안녕하세요" ).appendTo( document.body ); // ?
+	        console.log( "버튼을 클릭했습니다" );
+	    	$("#btnDsc").show();
+	    });
+	    
+	    $(".toggleBtn").on("click", function() {
+	    	$("#btnDsc").hide();
+	    	$("#mouseMove").toggle(500,function(){
+	    		// mousemove
+	    		$( "#movePoint" ).mousemove(function( event ) {
+	    			$("#mouseMove").show();
+	    		  var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
+	    		  var clientCoords = "( " + event.clientX + ", " + event.clientY + " )";
+	    		  $( ".point:first" ).text( "( event.pageX, event.pageY ) : " + pageCoords );
+	    		  $( ".point:last" ).text( "( event.clientX, event.clientY ) : " + clientCoords );
+	    		});
+	    		
+	    		$("#movePoint").mouseleave(function() {
+	    			alert("마우스가 노란박스를 벗어났습니다.")
+	    		});
+	    	});
+	    });
+	    
+	    $(window).resize(function(){
+	    	var height = window.outerHeight;
+	    	if (height <= 800) {
+	    		$('#textEnter').hide();
+	    		$('.toggleBtn').hide();
+	    		$('.twoClick').hide();
+	    		$('.oneClick').hide();
+	    	} else if (height >= 800) {
+	    		$('#textEnter').show();
+	    		$('.toggleBtn').show();
+	    		$('.twoClick').show();
+	    		$('.oneClick').show();
+	    	}
+	    });
+	    
+	});
+	
+	/* var nClick = function(n, result) {
+		if (n === $(".twoClick")) result($(this));
+		else if (n === $(".oneClick")) result($(this));
+	}
+	
+	 */
+	
+	
+	
+	$(document).ready(function(){
+		$(".twoClick").dblclick(function(){ // 더블클릭
+			$(this).hide();
+		});
+		
+		$(".oneClick").click(function(){ // 클릭
+			$(this).hide();
+		});
+	});
+	
+	$("p", "#area1").hover(function(){ // $(selector).hover(inFunction,outFunction)
+		$(this).css("background-color", "skyblue");
+	}, function() {
+		$(this).css("background-color", "white");	
+	});
+	
+	
+	/* function clickListner(obj) {
+		$(obj).click() {
+		}
+	}
+	
+	var oBtn = $('<button>');
+	oBtn.on('click', function() {
+	dfdfsdfsl
+	});
+	$('#view ul li').last().append(oBtn);
+	*/
+	
+	
+	$(".changeBtn").mouseup(function(){
+	    $("#changeBtnDsc").append("<br><span style='color:green;'>(mouseup)마우스 버튼을 뗐습니다</span>");
+	});
+	$(".changeBtn").mousedown(function(){
+	    $("#changeBtnDsc").append("<br><span style='color:purple;'>(mousedown)마우스 버튼을 눌렀습니다</span>");
+	});
+	$(".changeBtn").mouseenter(function(){
+	    $("#changeBtnDsc").append("<br><span style='color:blue;'>(mouseenter)노드 영역에 왔습니다</span>");
+	});
+	$(".changeBtn").mouseleave(function(){
+	    $("#changeBtnDsc").append("<br><span style='color:skyblue;'>(mouseleave)노드 영역을 벗어났습니다</span>");
+	});
+	/* 
+	$(window).unload(function(){
+	    alert("Goodbye!");
+	}); */
+	
+  </script>
+</body>
+
+</html>

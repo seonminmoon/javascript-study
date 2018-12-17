@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>javascript 연습용</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+#outputText {
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+}
+ 
+</style>
+</head>
+<body>
+<!-- ************************* html 코드 시작 ************************* -->
+	<h2>text 입력 후 출력</h2>
+<div id="box">
+	<input id="inputText" type="text"/>
+	<input id="inputBtn" type="button" value="저장" name=""/><br>
+	<p id="outputText">내용? </p>
+</div>
+
+<div id="wrapper">
+	<button data-cb="1">Add div</button>
+	<button data-cb="2">Add img</button>
+	<button data-cb="delete">Clear</button>
+	아래에 추가<br/>
+	<div id="appendDiv"></div>
+</div>
+<!-- ************************* html 코드 끝 ************************* -->
+<script>
+
+
+$('#inputBtn').click(() => {
+	$('#box').find('#outputText').append($('#inputText').val());
+});
+	
+</script>
+</body>
+</html>

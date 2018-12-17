@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>콜백함수</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>callback function</h1>
+	<input id="textEnter" type="text" placeholder="나이 작성 후 엔터치세요" />
+
+	<script>
+		// 콜백함수? 
+	    $('#textEnter').keypress(function(e){
+		    if(e.keyCode == 13) {
+			    myAge('문선민', parseInt($(this).val()), result);
+	 	    }
+	    }); // enter 치면 화면에 출력
+	    
+	    
+	    var result = function(name, age) {
+	    	var bornYear = 2018 - age + 1;
+	    	alert(name + "님, 당신은 " + bornYear + "년생입니다.")
+	    }
+	    
+	    function myAge(name, age, callback) {
+	    	callback(name, age);
+	    }
+	
+	    
+	    
+	    
+		/* 	     샌드위치
+		function mySandwich(p1, p2, callback) {
+		    console.log('재료 : '+ p1 + ',' + p2);
+	
+		}
+	
+		mySandwich('ham', 'bread', function(){
+		    alert("샌드위치를 다 먹었습니다");
+		});
+		 */
+		
+		
+		 // +,- 계산기
+		function cal(func, num1, num2) {
+			 return func(num1, num2)
+		 }
+		function plus(n1, n2) {
+			return n1 + n2;
+		}
+		function minus(n1, n2) {
+			var result = n2 - n1;
+			if(result >= 0) {
+				return result; 
+			} else {
+				return n1 - n2;
+			}
+		}
+		console.log(cal(plus, 20, 50));
+		console.log(cal(minus, 50, 20));
+		
+		
+		
+		// console 창에 "콜백함수는 클로저다" 출력
+		function callf (callback) {
+			callback();
+		}
+		function testf(){
+			console.log("===========================")
+			var text = "callback function is closure";
+			return callf(function() {
+				console.log(text);
+			});
+		}
+		testf();
+		
+		
+		// myName에 저장되어있는 이름 바꾸기
+		function myName(name) {
+		console.log("===========================")
+			return {
+				get_name : function() {
+					return name;
+				},
+				set_name : function(_name) {
+					name = _name;
+				}
+			}
+		}
+		
+		var A = myName("문선민");
+		console.log(A.get_name());
+		A.set_name("한가인");
+		console.log(A.get_name());
+		
+		
+		// 콜백 지옥
+		// => 콜백 패턴을 이용하는 함수에 연달아 추가 기능을 사용할 경우 콜백이 계속 중첩되는 상태
+		// 해결 방안
+		// => Promise, async, await
+		var test = function(bool) {
+			
+			return new Promise(function(resolve, reject){
+				setTimeout(function(){
+					if(bool) {
+						resolve("fulfilled(비동기 동작 정상 완료!) --> then");
+					} else {
+						reject("rejected(비동기 동작 중 에러 발생!) --> catch");
+					}
+				}, 1000);
+			});
+		}
+		test(true).then(function(result){
+			console.log("===========================")
+			console.log("1 : " + result);
+			return test(true);
+		}).then(function(result){
+			console.log("2 : " + result);
+			return test(true);
+		}).then(function(result){
+			console.log("3 : " + result);
+			return test(true);
+		}).catch(function(err){
+			console.log("콜백지옥 에러 : " + err)
+		})
+		
+		
+		
+	</script>
+</body>
+</html>
